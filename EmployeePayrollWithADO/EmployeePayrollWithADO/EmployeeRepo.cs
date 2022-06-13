@@ -216,7 +216,63 @@ namespace EmployeePayrollWithADO
 
         }
 
-       
+        public int CountOfRows()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-2DTGFII; Initial Catalog =payroll_service; Integrated Security = True; TrustServerCertificate=True;");
+            connection.Open();
+            string query = @"Select count(*) from employee_payroll where Gender='F';";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            object res = cmd.ExecuteScalar();
+            connection.Close();
+            int Count = (int)res;
+            return Count;
+        }
+
+        public int AverageOfSalary()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-2DTGFII; Initial Catalog =payroll_service; Integrated Security = True; TrustServerCertificate=True;");
+            connection.Open();
+            string query = @"Select Avg(salary) from employee_payroll where Gender='F';";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            object res = cmd.ExecuteScalar();
+            connection.Close();
+            int NetPay = (int)res;
+            return NetPay;
+        }
+
+        public int SumOfSalary()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-2DTGFII; Initial Catalog =payroll_service; Integrated Security = True; TrustServerCertificate=True;");
+            connection.Open();
+            string query = @"Select Sum(salary) from employee_payroll where Gender='F';";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            object res = cmd.ExecuteScalar();
+            connection.Close();
+            int Sum = (int)res;
+            return Sum;
+        }
+        public int MinimumOfSalary()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-2DTGFII; Initial Catalog =payroll_service; Integrated Security = True; TrustServerCertificate=True;");
+            connection.Open();
+            string query = @"Select Min(salary) from employee_payroll where Gender='F';";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            object res = cmd.ExecuteScalar();
+            connection.Close();
+            int min = (int)res;
+            return min;
+        }
+        public int MaximumOfSalary()
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-2DTGFII; Initial Catalog =payroll_service; Integrated Security = True; TrustServerCertificate=True;");
+            connection.Open();
+            string query = @"Select Max(salary) from employee_payroll where Gender='F';";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            object res = cmd.ExecuteScalar();
+            connection.Close();
+            int max = (int)res;
+            return max;
+        }
 
 
 

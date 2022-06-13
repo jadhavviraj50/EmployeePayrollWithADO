@@ -49,7 +49,24 @@ namespace EmployeePayrollWithADO
                         repo.GetEmployeedetails_with_StartDate();
                         break;
 
-                    
+                    case 5:
+
+                        int count = repo.CountOfRows();
+                        Console.WriteLine("Count of Records :" + count);
+
+                        int AverageSalary = repo.AverageOfSalary();
+                        Console.WriteLine("Average salary is :" + AverageSalary);
+
+                        int SumOfTheSalary = repo.SumOfSalary();
+                        Console.WriteLine("Sum of salaries is :" + SumOfTheSalary);
+
+                        int minimum = repo.MinimumOfSalary();
+                        Console.WriteLine("Minimum of salaries is :" + minimum);
+
+                        int maximum = repo.MaximumOfSalary();
+                        Console.WriteLine("Maximum of salaries is :" + maximum);
+                        break;
+
 
                     default:
                         Console.WriteLine("Please choose the correct option");
