@@ -38,7 +38,7 @@ namespace EmployeePayrollWithADO
                             employeeModel.id = dr.GetInt32(0);
                             employeeModel.name = dr.GetString(1);
                             employeeModel.salary = dr.GetInt32(2);
-                            //employeeModel.startdate = dr.GetString(3);
+                            employeeModel.startdate = dr.GetDateTime(3);
                             //employeeModel.gender = Convert.ToChar(dr.GetString(4));
                             //employeeModel.department = dr.GetString(5);
                             //employeeModel.basicpay = dr.GetInt32(6); 
@@ -47,7 +47,7 @@ namespace EmployeePayrollWithADO
 
 
                             //display retrieve record
-                            Console.WriteLine("{0},{1},{2}", employeeModel.id, employeeModel.name, employeeModel.salary);
+                            Console.WriteLine("{0},{1},{2},{3}", employeeModel.id, employeeModel.name, employeeModel.salary, employeeModel.startdate);
                             Console.WriteLine("\n");
 
                         }
@@ -114,5 +114,111 @@ namespace EmployeePayrollWithADO
                 this.connection.Close();
             }
         }
+
+        public int updateSalary()
+        {
+            EmployeeModel employee = new EmployeeModel();
+            SqlConnection connection = new(@"Data Source=DESKTOP-2DTGFII; Initial Catalog =payroll_service; Integrated Security = True;");
+            connection.Open();
+            SqlCommand command = new SqlCommand("update employee_payroll set salary=3000000 where name='Terissa'", connection);
+            Console.WriteLine("salary updated");
+
+            int result = command.ExecuteNonQuery();
+            
+
+            if (result == 1)
+            {
+                string query = @"Select salary from employee_payroll where name='Viraj';";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                object res = cmd.ExecuteScalar();
+                connection.Close();
+                employee.salary = (int)res;
+            }
+            connection.Close();
+            return (employee.salary);
+
+        }
+
+        public void GetEmployeedetails_with_StartDate()
+        {
+            try
+            {
+                EmployeeModel employeeModel = new EmployeeModel();
+                using (this.connection)
+                {
+                    string query = @"select * from employee_payroll where startdate BETWEEN cast('2019-01-01' as date) and GETDATE();";
+                    SqlCommand cmd = new SqlCommand(query, this.connection);
+
+                    this.connection.Open();
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+
+                        while (dr.Read())
+                        {
+
+                            employeeModel.id = dr.GetInt32(0);
+                            employeeModel.name = dr.GetString(1);
+                            employeeModel.salary = dr.GetInt32(2);
+                            employeeModel.startdate = dr.GetDateTime(3);
+                            employeeModel.gender  = dr.GetChar(4);
+                            employeeModel.phone = dr.GetString(5);
+                            employeeModel.address = dr.GetString(6);
+                            employeeModel.department = dr.GetString(7);
+                            employeeModel.basicpay = dr.GetInt32(8);
+                            employeeModel.deduction = dr.GetInt32(9);
+                            employeeModel.taxablepay = dr.GetInt32(10);
+                            employeeModel.incometax = dr.GetInt32(11);
+                            employeeModel.netpay = dr.GetInt32(12);
+                            
+
+                            Console.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12}",
+
+                            employeeModel.id,
+                            employeeModel.name,
+                            employeeModel.salary,
+                            employeeModel.startdate,
+                            employeeModel.gender,
+                            employeeModel.phone,
+                            employeeModel.address,
+                            employeeModel.department,
+                            employeeModel.basicpay,
+                            employeeModel.deduction,
+                            employeeModel.taxablepay,
+                            employeeModel.incometax,
+                            employeeModel.netpay);
+
+                            Console.WriteLine("\n");
+
+                        };
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("No data found");
+                    }
+                    //close data reader
+                    dr.Close();
+                    this.connection.Close();
+                }
+            }
+
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+            finally
+            {
+                this.connection.Close();
+            }
+
+        }
+
+       
+
+
+
     }
 }

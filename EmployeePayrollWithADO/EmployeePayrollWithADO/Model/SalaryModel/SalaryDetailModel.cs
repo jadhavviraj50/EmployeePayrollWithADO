@@ -17,3 +17,4 @@ namespace EmployeePayrollWithADO.Model.SalaryModel
 
     }
 }
+
