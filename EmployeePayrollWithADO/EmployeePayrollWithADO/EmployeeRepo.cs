@@ -17,9 +17,6 @@ namespace EmployeePayrollWithADO
         {
             try
             {
-
-
-
                 EmployeeModel employeeModel = new EmployeeModel();
                 using (this.connection)
                 {
