@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿
+using System;
 namespace EmployeePayrollWithADO
 {
     class Program
@@ -8,7 +8,7 @@ namespace EmployeePayrollWithADO
         {
             Console.WriteLine("Welcome to Employee Payroll!");
 
-            EmployeeRepo repo = new EmployeeRepo();
+            /*EmployeeRepo repo = new EmployeeRepo();
             EmployeeModel employee = new EmployeeModel();
 
             while (true)
@@ -22,7 +22,7 @@ namespace EmployeePayrollWithADO
                         repo.GetAllEmployee();
                         break;
                     case 2:
-                    /*
+                    
                     employee.name = "Bruce Wayne";
                     employee.salary = 25000;
                     employee.startdate = "05-05-2019";
@@ -37,7 +37,7 @@ namespace EmployeePayrollWithADO
                     employee.netpay = 25000;
 
                     repo.AddEmployee(employee);
-                    break;*/
+                    break;
 
                     case 3:
                         repo.updateSalary();
@@ -71,9 +71,11 @@ namespace EmployeePayrollWithADO
                     default:
                         Console.WriteLine("Please choose the correct option");
                         break;
+            
                 }
-            }
+            }*/
 
         }
     }
 }
+
