@@ -51,6 +51,11 @@ namespace EmployeePayrollTest
             DateTime stopDateTime = DateTime.Now;
             Console.WriteLine("Duration without thread: " + (stopDateTime - startDateTime));
 
+            DateTime startDateTimeThread = DateTime.Now;
+            employeePayrollOperations.addEmployeeToPayrollWithThread(employeeDetails);
+            DateTime stopDateTimeThread = DateTime.Now;
+            Console.WriteLine("Duration with Thread: " + (stopDateTimeThread - startDateTimeThread));
+
         }
     }
 
